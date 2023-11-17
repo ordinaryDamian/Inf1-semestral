@@ -7,6 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collections;
 
 /**
  * Automaticky posiela spravy danym objektom:<br />
@@ -21,6 +22,7 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class Manazer {
     private ArrayList<Object> spravovaneObjekty;
+    private ArrayList<Integer> vymazaneObjekty;
     private long oldTick;
     private static final long TICK_LENGTH = 250000000;
     
@@ -63,8 +65,10 @@ public class Manazer {
     private void posliSpravu(String selektor) {
         for (Object adresat : this.spravovaneObjekty) {
             try {
-                Method sprava = adresat.getClass().getMethod(selektor);
-                sprava.invoke(adresat);
+                if (adresat != null) {                    
+                    Method sprava = adresat.getClass().getMethod(selektor);
+                    sprava.invoke(adresat);
+                }
             } catch (SecurityException e) {
                 this.doNothing();
             } catch (NoSuchMethodException e) {
@@ -77,13 +81,16 @@ public class Manazer {
                 this.doNothing();
             }
         }
+        this.removeDeletedObjects();
     }
     
     private void posliSpravu(String selektor, int prvyParameter, int druhyParameter) {
         for (Object adresat : this.spravovaneObjekty) {
             try {
-                Method sprava = adresat.getClass().getMethod(selektor, Integer.TYPE, Integer.TYPE);
-                sprava.invoke(adresat, prvyParameter, druhyParameter);
+                if (adresat != null) {
+                    Method sprava = adresat.getClass().getMethod(selektor, Integer.TYPE, Integer.TYPE);
+                    sprava.invoke(adresat, prvyParameter, druhyParameter);
+                }
             } catch (SecurityException e) {
                 this.doNothing();
             } catch (NoSuchMethodException e) {
@@ -96,10 +103,21 @@ public class Manazer {
                 this.doNothing();
             }
         }
+        this.removeDeletedObjects();
     }
     
     private void doNothing() {
         
+    }
+    
+    private void removeDeletedObjects() {
+        if (this.vymazaneObjekty.size() > 0) {
+            Collections.sort(this.vymazaneObjekty, Collections.reverseOrder());
+            for(int i = this.vymazaneObjekty.size() - 1; i >= 0; i--) {
+                this.spravovaneObjekty.remove(this.vymazaneObjekty.get(i));
+            }
+            this.vymazaneObjekty.clear();
+        }        
     }
     
     /**
@@ -107,6 +125,7 @@ public class Manazer {
      */
     public Manazer() {
         this.spravovaneObjekty = new ArrayList<Object>();
+        this.vymazaneObjekty = new ArrayList<Integer>();
         Platno.dajPlatno().addKeyListener(new ManazerKlaves());
         Platno.dajPlatno().addTimerListener(new ManazerCasovaca());
         Platno.dajPlatno().addMouseListener(new ManazerMysi());
@@ -117,5 +136,16 @@ public class Manazer {
      */
     public void spravujObjekt(Object objekt) {
         this.spravovaneObjekty.add(objekt);
+    }
+    
+    /**
+     * Manazer prestane spravovat dany objekt.
+     */
+    public void prestanSpravovatObjekt(Object objekt) {
+        int index = this.spravovaneObjekty.indexOf(objekt);
+        if (index >= 0) {
+            this.spravovaneObjekty.set(index,null);
+            this.vymazaneObjekty.add(index);
+        }
     }
 }

@@ -158,7 +158,7 @@ public class Platno {
         try {
             Thread.sleep(milisekundy);
         } catch (Exception e) {
-            System.out.println("Cakanie sa nepodarilo");
+            System.out.println("Čakanie sa nepodarilo");
         }
     }
 
