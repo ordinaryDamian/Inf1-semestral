@@ -1,6 +1,11 @@
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
-import java.util.Random;
+import java.awt.GridLayout;
+// import java.util.ArrayList;
+// import java.util.Timer;
+// import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -10,9 +15,13 @@ public class Tetris extends JFrame {
 
   private static int fieldHeight;
   private static int fieldWidth;
-  Random ran = new Random();
+  private int score;
+  // Timer timer = new Timer();
+  // Random ran = new Random();
   JPanel uvodPanel = new JPanel();
-  JPanel box = new JPanel();
+  //JPanel box = new JPanel();
+  //JPanel panel = new JPanel(new GridLayout(2, 2));
+  JPanel box = new JPanel(new GridLayout(25, 10));
   JFrame okno = new JFrame();
   JLabel text = new JLabel();
 
@@ -24,10 +33,13 @@ public class Tetris extends JFrame {
     okno.setTitle("Tetris");
     okno.setResizable(false);
     okno.setDefaultCloseOperation(EXIT_ON_CLOSE);
-    okno.setLayout(null);
+    okno.setLayout(new CardLayout());
     okno.setVisible(true);
     okno.add(this.uvodPanel);
     okno.add(this.box);
+    okno.requestFocusInWindow();
+    okno.setFocusable(true);
+    this.score = 0;
 
     //uvodPanel.setLayout(new BorderLayout());
     uvodPanel.setBackground(Color.darkGray);
@@ -37,8 +49,10 @@ public class Tetris extends JFrame {
 
     box.setBounds(0, 50, 600, 950);
     box.setBackground(Color.GRAY);
+    box.setLayout(new FlowLayout());
+    box.setVisible(true);
 
-    text.setText("Začiatok hry");
+    text.setText("Skóre: " + this.score);
     text.setForeground(new Color(255, 255, 255));
     text.setBackground(uvodPanel.getBackground());
     text.setHorizontalAlignment(SwingConstants.CENTER);
