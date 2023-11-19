@@ -22,18 +22,25 @@ public class input implements KeyListener {
     switch (keyCode) {
       case KeyEvent.VK_UP:
         // Code to execute when UP arrow key is pressed
+        //Zmenit orientáciu bloku
         break;
       case KeyEvent.VK_DOWN:
         // Code to execute when DOWN arrow key is pressed
+        //Zrýchliť padanie bloku
         break;
       case KeyEvent.VK_LEFT:
         // Code to execute when LEFT arrow key is pressed
+        //posunúť blok o jednu kocku dolava
         break;
       case KeyEvent.VK_RIGHT:
         // Code to execute when RIGHT arrow key is pressed
+        //posunuť o jednu kocku doprava
         break;
       default:
         // Code to execute for all other keys
+        //System.out.println(
+        //  "You pressed wrong key, please read manual for assitance."
+        //);
         break;
     }
   }
