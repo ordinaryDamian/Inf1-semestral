@@ -26,10 +26,11 @@ USER INSTRUCTIONS: -
 Here's a high-level outline of how you could approach this:
 
     1.Create a JFrame and set its layout to a CardLayout.
-    2.Create three JPanel components: one for the game board, one for the menu, and one for the options.
+    Vytvorti JFrame v inej classe a potom ho volat do main
+    2.Create three JPanel components: one for the game board (Grid panel ?), one for the menu (2 button pre zapametanie score a citanie skore, nacitane skore na konzolu), and one for score(panel so score).
     3.Add the game board panel to the frame using the add() method and specify the CardLayout constraint.
     4.Add the menu panel and options panel to the frame using the add() method and specify the CardLayout constraint.
-    5.In the game board panel, use a 2D array to represent the Tetris board and draw it using the paintComponent() method.
+    5.In the game board panel, use a 2D array to represent the Tetris board and draw it using the paintComponent() method. Pridat key listener pre listening na klavesach
     6.Implement the Tetris game logic using separate classes for the different game pieces and a game manager class to handle their movements.
     7.Use a timer to control the game's speed.
     8.Create a user interface for the menu and options panels.
@@ -37,3 +38,8 @@ Here's a high-level outline of how you could approach this:
 
 Please note that creating a complete Tetris game would be too complex for this platform. The provided information is intended to serve as a starting point for your exploration..
 
+Class aplikacia by mala vytvorit instanciu class Frame, Buttons, ScoreBoard a PlayingField
+Frame je celkovy frame okolo viac menej okno
+Buttons sa sklada z tlacitek Write score, Read scores, Reset game
+Scoreboard by malo zobrazovat score
+Playing field by malo byt to kde sa deje magic
