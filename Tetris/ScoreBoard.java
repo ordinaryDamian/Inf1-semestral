@@ -24,7 +24,7 @@ public class ScoreBoard {
     //displayScore.setFont(new Font("Iosevka", Font.PLAIN, 30));;
     displayScore.setOpaque(true); //zobrazenie pozadia panelu
     scoreBoard.setBackground(Color.DARK_GRAY);
-    scoreBoard.setBounds(0, 50, 600, 50);
+    scoreBoard.setBounds(0, 50, 475, 50);
     scoreBoard.setLayout(new BorderLayout());
     scoreBoard.add(displayScore);
   }

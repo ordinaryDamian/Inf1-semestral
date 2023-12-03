@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class Buttons implements ActionListener { //je to interface
+public class Buttons implements ActionListener { //ActionListener je to interface ktory pocuva ci bolo tlacidlo stlacene a podla toho uroby
 
   JButton showScore;
   JButton writeScore;
@@ -35,13 +35,28 @@ public class Buttons implements ActionListener { //je to interface
     resetGame.setBackground(Color.LIGHT_GRAY);
 
     scoreBoard.setLayout(new FlowLayout(0, 0, 0)); //TODO:
+    scoreBoard.setBounds(0, 0, 475, 50);
     scoreBoard.add(showScore);
     scoreBoard.add(writeScore);
     scoreBoard.add(resetGame);
   }
 
+  // @Override
+  // public void ActionListener(ActionEvent e) {
+  //   if (e.getSource() == this.showScore) {
+  //     System.out.println("Tvoja história hier: ");
+  //     //TODO: implement print of scores, nacitanie skore hráca zo suboru
+  //   }
+  //   if (e.getSource() == this.writeScore) {
+  //     //TODO: implemet score write to file, zapísanie score do suboru v inej class
+  //   }
+  //   if (e.getSource() == this.resetGame) {
+  //     //TODO: implement resetovať hru
+  //   }
+  // }
+
   @Override
-  public void ActionListener(ActionEvent e) {
+  public void actionPerformed(ActionEvent e) {
     if (e.getSource() == this.showScore) {
       System.out.println("Tvoja história hier: ");
       //TODO: implement print of scores, nacitanie skore hráca zo suboru
@@ -51,14 +66,8 @@ public class Buttons implements ActionListener { //je to interface
     }
     if (e.getSource() == this.resetGame) {
       //TODO: implement resetovať hru
+      //zmenit skore na 0
+      //vycistit hracie pole
     }
-  }
-
-  @Override
-  public void actionPerformed(ActionEvent e) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException(
-      "Unimplemented method 'actionPerformed'"
-    );
   }
 }

@@ -6,8 +6,9 @@ import javax.swing.*;
 
 public class Frame extends JFrame {
 
-  private final int WIDTH = 600;
+  private final int WIDTH = 475;
   private final int HEIGHT = 1050;
+  private PlayingField playField;
 
   public Frame() {
     this.setVisible(true);
@@ -18,5 +19,6 @@ public class Frame extends JFrame {
     this.getContentPane().setBackground(new Color(127, 128, 127));
     this.setLocation(300, 0);
     this.setLayout(null);
+    this.add(this.playField);
   }
 }
