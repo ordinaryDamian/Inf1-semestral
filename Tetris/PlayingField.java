@@ -12,6 +12,7 @@ public class PlayingField extends JPanel implements Runnable {
   private int cellInGridSize;
 
   public PlayingField() {
+    this.requestFocus();
     this.FPS = 100;
     this.frameTime = 1000000000 / FPS;
     this.setBounds(0, 100, 600, 950);
